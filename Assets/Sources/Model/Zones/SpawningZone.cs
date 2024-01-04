@@ -8,11 +8,15 @@ public class SpawningZone : Zone
 
     private Vector3 ExceptionZoneVertexPosition;
 
+    private float _spawnHeight;
+
     private readonly RandomFloat _randomFloat;
 
-    public SpawningZone(Vector3 vertexPosition, Vector3 exceptionZoneVertexPosition = new Vector3()) : base(vertexPosition)
+    public SpawningZone(Vector3 vertexPosition, Vector3 exceptionZoneVertexPosition = new Vector3(), 
+        float spawnHeight = 0) : base(vertexPosition)
     {
         ExceptionZoneVertexPosition = exceptionZoneVertexPosition;
+        _spawnHeight = spawnHeight;
         _randomFloat = new RandomFloat();
     }
 
@@ -24,6 +28,7 @@ public class SpawningZone : Zone
             -ExceptionZoneVertexPosition.X, ExceptionZoneVertexPosition.X);
         point += _forward * GetRandomValueExceptInterval(-VertexPosition.Z, VertexPosition.Z,
             -ExceptionZoneVertexPosition.Z, ExceptionZoneVertexPosition.Z);
+        point.Y += _spawnHeight;
 
         return point;
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 public class UnitMovement : MonoBehaviour
@@ -10,6 +11,8 @@ public class UnitMovement : MonoBehaviour
     private Transform _transform;
 
     private Coroutine _move = null;
+
+    public event UnityAction MoveCompleted;
 
     private void Awake()
     {
@@ -46,6 +49,7 @@ public class UnitMovement : MonoBehaviour
             yield return null;
         }
 
+        MoveCompleted?.Invoke();
         _move = null;
     }
 }

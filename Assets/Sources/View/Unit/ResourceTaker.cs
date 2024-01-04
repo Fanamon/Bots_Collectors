@@ -7,6 +7,7 @@ public class ResourceTaker : MonoBehaviour
     public void TakeResource(Resource resource)
     {
         Rigidbody resourceRigidbody = resource.GetComponent<Rigidbody>();
+        resource.BeGathered();
 
         resource.transform.parent = _resourceKeeper;
         resource.transform.localPosition = Vector3.zero;
